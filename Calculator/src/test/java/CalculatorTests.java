@@ -48,4 +48,12 @@ public class CalculatorTests {
                                 () -> _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put(productType, 1); }}));
     }
 
+    @Test
+    void Calculate_TwoApples()
+    {
+        Double price = _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put("apple", 2); }});
+
+        Assertions.assertEquals(0.2, price);
+    }
+
 }
