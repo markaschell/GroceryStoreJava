@@ -10,9 +10,15 @@ public class Calculator {
             price += GetPrice(productType) * list.get(productType);
         }
 
-        return price;
+        if (list.containsKey(ProductType.Soup) && list.containsKey(ProductType.Bread)) {
+            price -= 0.4;
+        }
+
+        // Should we introduce a Money object?
+        return Math.round(price * 100.0) / 100.0;
     }
 
+    // These constants will be an issue if prices change.  Move them to a separate class to start?
     private Double GetPrice(ProductType productType) {
         switch (productType)
         {
