@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 public class Calculator {
@@ -13,8 +14,8 @@ public class Calculator {
                 return 0.8;
             case "soup":
                 return 0.65;
+            default:
+                throw new InvalidParameterException();
         }
-
-        return 0.0;
     }
 }

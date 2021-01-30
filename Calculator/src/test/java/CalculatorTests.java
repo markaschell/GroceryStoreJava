@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 public class CalculatorTests {
@@ -38,11 +40,12 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_OneSoup()
+    void Calculate_UnknownProduct()
     {
-        Double price = _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put("soup", 1); }});
+        String productType = "tomato";
 
-        Assertions.assertEquals(0.65, price);
+        Assertions.assertThrows(InvalidParameterException.class,
+                                () -> _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put(productType, 1); }}));
     }
 
 }
