@@ -2,22 +2,22 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 public class Calculator {
-    public Double CalculatePrice(HashMap<String, Integer> list) {
-        String productType = list.keySet().stream().findFirst().get();
+    public Double CalculatePrice(HashMap<ProductType, Integer> list) {
+        ProductType productType = list.keySet().stream().findFirst().get();
 
         return GetPrice(productType) * list.get(productType);
     }
 
-    private Double GetPrice(String productType) {
+    private Double GetPrice(ProductType productType) {
         switch (productType)
         {
-            case "apple":
+            case Apple:
                 return 0.1;
-            case "milk":
+            case Milk:
                 return 1.3;
-            case "bread":
+            case Bread:
                 return 0.8;
-            case "soup":
+            case Soup:
                 return 0.65;
             default:
                 throw new InvalidParameterException();
