@@ -20,4 +20,29 @@ public class CalculatorTests {
 
         Assertions.assertEquals(0.1, price);
     }
+
+    @Test
+    void Calculate_OneMilk()
+    {
+        Double price = _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put("milk", 1); }});
+
+        Assertions.assertEquals(1.3, price);
+    }
+
+    @Test
+    void Calculate_OneBread()
+    {
+        Double price = _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put("bread", 1); }});
+
+        Assertions.assertEquals(0.8, price);
+    }
+
+    @Test
+    void Calculate_OneSoup()
+    {
+        Double price = _calculator.CalculatePrice(new HashMap<String, Integer>() {{ put("soup", 1); }});
+
+        Assertions.assertEquals(0.65, price);
+    }
+
 }
