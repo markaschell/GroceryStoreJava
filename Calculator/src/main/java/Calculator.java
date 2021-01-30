@@ -10,7 +10,7 @@ public class Calculator {
             price += GetPrice(productType) * list.get(productType);
         }
 
-        int numberOfDiscounts = Math.min(list.get(ProductType.Soup) / 2, list.get(ProductType.Bread));
+        int numberOfDiscounts = Math.min(list.getOrDefault(ProductType.Soup, 0) / 2, list.getOrDefault(ProductType.Bread, 0));
         price -= 0.4 * numberOfDiscounts;
 
         // Should we introduce a Money object?
