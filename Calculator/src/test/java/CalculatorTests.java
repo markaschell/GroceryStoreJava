@@ -14,6 +14,14 @@ public class CalculatorTests {
     }
 
     @Test
+    void Calculate_NoItems()
+    {
+        Double price = _calculator.CalculatePrice(new HashMap<>());
+
+        Assertions.assertEquals(0.0, price);
+    }
+
+    @Test
     void Calculate_OneApple()
     {
         Double price = _calculator.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Apple, 1); }});
@@ -43,5 +51,17 @@ public class CalculatorTests {
         Double price = _calculator.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Apple, 2); }});
 
         Assertions.assertEquals(0.2, price);
+    }
+
+    @Test
+    void Calculate_ApplyAndBread()
+    {
+        HashMap<ProductType, Integer> list = new HashMap<>();
+        list.put(ProductType.Apple, 1);
+        list.put(ProductType.Bread, 1);
+
+        Double price = _calculator.CalculatePrice(list);
+
+        Assertions.assertEquals(0.9, price);
     }
 }

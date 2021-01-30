@@ -3,9 +3,14 @@ import java.util.HashMap;
 
 public class Calculator {
     public Double CalculatePrice(HashMap<ProductType, Integer> list) {
-        ProductType productType = list.keySet().stream().findFirst().get();
 
-        return GetPrice(productType) * list.get(productType);
+        double price = 0.0;
+
+        for (ProductType productType : list.keySet()) {
+            price += GetPrice(productType) * list.get(productType);
+        }
+
+        return price;
     }
 
     private Double GetPrice(ProductType productType) {
