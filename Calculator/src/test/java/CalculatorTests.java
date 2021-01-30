@@ -88,4 +88,16 @@ public class CalculatorTests {
 
         Assertions.assertEquals(1.45, price);
     }
+
+    @Test
+    void Calculate_HalfOffBreadWhenTwoSoupsDiscount_AppliedTwice()
+    {
+        HashMap<ProductType, Integer> list = new HashMap<>();
+        list.put(ProductType.Soup, 4);
+        list.put(ProductType.Bread, 2);
+
+        Double price = _calculator.CalculatePrice(list);
+
+        Assertions.assertEquals(3.4, price);
+    }
 }

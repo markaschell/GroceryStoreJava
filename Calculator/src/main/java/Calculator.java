@@ -10,9 +10,8 @@ public class Calculator {
             price += GetPrice(productType) * list.get(productType);
         }
 
-        if (list.containsKey(ProductType.Soup) && list.get(ProductType.Soup) == 2 && list.containsKey(ProductType.Bread)) {
-            price -= 0.4;
-        }
+        int numberOfDiscounts = Math.min(list.get(ProductType.Soup) / 2, list.get(ProductType.Bread));
+        price -= 0.4 * numberOfDiscounts;
 
         // Should we introduce a Money object?
         return Math.round(price * 100.0) / 100.0;
