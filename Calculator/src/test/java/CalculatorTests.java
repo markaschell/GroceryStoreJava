@@ -66,7 +66,7 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_HalfOffBreadWhenTwoSoups()
+    void Calculate_HalfOffBreadWhenTwoSoupsDiscount()
     {
         HashMap<ProductType, Integer> list = new HashMap<>();
         list.put(ProductType.Soup, 2);
@@ -75,5 +75,17 @@ public class CalculatorTests {
         Double price = _calculator.CalculatePrice(list);
 
         Assertions.assertEquals(1.7, price);
+    }
+
+    @Test
+    void Calculate_HalfOffBreadWhenTwoSoupsDiscount_NotMet()
+    {
+        HashMap<ProductType, Integer> list = new HashMap<>();
+        list.put(ProductType.Soup, 1);
+        list.put(ProductType.Bread, 1);
+
+        Double price = _calculator.CalculatePrice(list);
+
+        Assertions.assertEquals(1.45, price);
     }
 }

@@ -10,7 +10,7 @@ public class Calculator {
             price += GetPrice(productType) * list.get(productType);
         }
 
-        if (list.containsKey(ProductType.Soup) && list.containsKey(ProductType.Bread)) {
+        if (list.containsKey(ProductType.Soup) && list.get(ProductType.Soup) == 2 && list.containsKey(ProductType.Bread)) {
             price -= 0.4;
         }
 
