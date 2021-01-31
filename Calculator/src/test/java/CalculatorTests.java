@@ -139,6 +139,7 @@ public class CalculatorTests {
         Assertions.assertEquals(1.7, price);
     }
 
+    // Verify with the client this is correct
     @Test
     void Calculate_TwoSoupAndOneBread_DiscountEndDate_DiscountApplied()
     {
@@ -161,5 +162,66 @@ public class CalculatorTests {
         Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(6));
 
         Assertions.assertEquals(2.1, price);
+    }
+
+    @Test
+    void Calculate_Apple_BeforeDiscount_NoDiscount()
+    {
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 1);
+
+        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(2));
+
+        Assertions.assertEquals(.1, price);
+    }
+
+    @Test
+    void Calculate_Apple_DiscountStartDate_DiscountApplied()
+    {
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 1);
+
+        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(3));
+
+        Assertions.assertEquals(0.09, price);
+    }
+
+    @Test
+    void Calculate_TwoApples_DiscountStartDate_DiscountApplied()
+    {
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 2);
+
+        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(3));
+
+        Assertions.assertEquals(0.18, price);
+    }
+
+    // Need to ask the client if this is the next month after today or next month 3 days from now
+    @Test
+    void Calculate_Apple_DiscountEndDate_DiscountApplied()
+    {
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 1);
+
+        // Given the interface I am not sure now to set this a bit more clear.  I could mock out today
+        LocalDate lastDayOfNextMonth = LocalDate.now().plusMonths(2).withDayOfMonth(1).minusDays(1);
+
+        Double price = _calculator.CalculatePrice(basket, lastDayOfNextMonth);
+
+        Assertions.assertEquals(0.09, price);
+    }
+
+    @Test
+    void Calculate_Apple_AfterDiscount_NoDiscount()
+    {
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 1);
+
+        LocalDate firstDayOfTwoMonthsFromNow = LocalDate.now().plusMonths(2).withDayOfMonth(1);
+
+        Double price = _calculator.CalculatePrice(basket, firstDayOfTwoMonthsFromNow);
+
+        Assertions.assertEquals(0.1, price);
     }
 }

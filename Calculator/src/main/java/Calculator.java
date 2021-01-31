@@ -39,6 +39,10 @@ public class Calculator {
     }
 
     private Double CalculateDiscount(HashMap<ProductType, Integer> basket, LocalDate date){
+        return CalculateSoupBreadDiscount(basket, date) + CalculateAppleDiscount(basket, date);
+    }
+
+    private Double CalculateSoupBreadDiscount(HashMap<ProductType, Integer> basket, LocalDate date) {
         LocalDate discountStart = LocalDate.now().minusDays(1);
 
         if (date.isBefore(discountStart) || date.isAfter(discountStart.plusDays(6))) {
@@ -47,5 +51,16 @@ public class Calculator {
 
         int numberOfDiscounts = Math.min(basket.getOrDefault(ProductType.Soup, 0) / 2, basket.getOrDefault(ProductType.Bread, 0));
         return (GetPrice(ProductType.Bread) / 2.0) * numberOfDiscounts;
+    }
+
+    private Double CalculateAppleDiscount(HashMap<ProductType, Integer> basket, LocalDate date) {
+        LocalDate discountStart = LocalDate.now().plusDays(3);
+
+        if (date.isBefore(discountStart) || date.isAfter(LocalDate.now().plusMonths(2).withDayOfMonth(1).minusDays(1))) {
+            return 0.0;
+        }
+
+        int numberOfDiscounts = basket.getOrDefault(ProductType.Apple, 0);
+        return (GetPrice(ProductType.Apple) * 0.1) * numberOfDiscounts;
     }
 }
