@@ -2,16 +2,15 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 public class Calculator {
-    public Double CalculatePrice(HashMap<ProductType, Integer> list) {
+    public Double CalculatePrice(HashMap<ProductType, Integer> basket) {
 
         double price = 0.0;
 
-        for (ProductType productType : list.keySet()) {
-            price += GetPrice(productType) * list.get(productType);
+        for (ProductType productType : basket.keySet()) {
+            price += GetPrice(productType) * basket.get(productType);
         }
 
-        int numberOfDiscounts = Math.min(list.getOrDefault(ProductType.Soup, 0) / 2, list.getOrDefault(ProductType.Bread, 0));
-        price -= 0.4 * numberOfDiscounts;
+        price -= CalculateDiscount(basket);
 
         // Should we introduce a Money object?
         return Math.round(price * 100.0) / 100.0;
@@ -32,5 +31,10 @@ public class Calculator {
             default:
                 throw new InvalidParameterException();
         }
+    }
+
+    private Double CalculateDiscount(HashMap<ProductType, Integer> basket){
+        int numberOfDiscounts = Math.min(basket.getOrDefault(ProductType.Soup, 0) / 2, basket.getOrDefault(ProductType.Bread, 0));
+        return  (GetPrice(ProductType.Bread) / 2.0) * numberOfDiscounts;
     }
 }

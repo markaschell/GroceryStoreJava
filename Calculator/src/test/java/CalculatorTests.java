@@ -56,11 +56,11 @@ public class CalculatorTests {
     @Test
     void Calculate_AppleAndBread()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Apple, 1);
-        list.put(ProductType.Bread, 1);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 1);
+        basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(0.9, price);
     }
@@ -68,11 +68,11 @@ public class CalculatorTests {
     @Test
     void Calculate_TwoSoupAndOneBread_DiscountApplied()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Soup, 2);
-        list.put(ProductType.Bread, 1);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Soup, 2);
+        basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(1.7, price);
     }
@@ -80,11 +80,11 @@ public class CalculatorTests {
     @Test
     void Calculate_OneSoupAndOneBread_NoDiscount()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Soup, 1);
-        list.put(ProductType.Bread, 1);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Soup, 1);
+        basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(1.45, price);
     }
@@ -92,11 +92,11 @@ public class CalculatorTests {
     @Test
     void Calculate_TwoSoup_NoDiscount()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Soup, 2);
-        list.put(ProductType.Bread, 0);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Soup, 2);
+        basket.put(ProductType.Bread, 0);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(1.3, price);
     }
@@ -104,11 +104,11 @@ public class CalculatorTests {
     @Test
     void Calculate_FourSoupAndTwoBread_DiscountAppliedTwice()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Soup, 4);
-        list.put(ProductType.Bread, 2);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Soup, 4);
+        basket.put(ProductType.Bread, 2);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(3.4, price);
     }

@@ -17,11 +17,11 @@ public class CalculatorScenarioTests {
     @Test
     void Calculate_ThreeSoupsAndTwoLoavesBoughtToday_OneDiscountApplied()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Soup, 3);
-        list.put(ProductType.Bread, 2);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Soup, 3);
+        basket.put(ProductType.Bread, 2);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(3.15, price);
     }
@@ -29,11 +29,11 @@ public class CalculatorScenarioTests {
     @Test
     void Calculate_SixApplesAndOneMilkBoughtToday_NoDiscountApplied()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Apple, 6);
-        list.put(ProductType.Milk, 1);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 6);
+        basket.put(ProductType.Milk, 1);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(1.9, price);
     }
@@ -41,11 +41,11 @@ public class CalculatorScenarioTests {
 /*    @Test
     void Calculate_SixApplesAndOneMilkBoughtFiveDaysFromNow_AppleDiscountApplied()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Apple, 6);
-        list.put(ProductType.Milk, 1);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 6);
+        basket.put(ProductType.Milk, 1);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(1.84, price);
     }
@@ -53,12 +53,12 @@ public class CalculatorScenarioTests {
     @Test
     void Calculate_ThreeApplesTwoSoupAndOneBreadBoughtFiveDaysFromNow_BothDiscountsApplied()
     {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Apple, 3);
-        list.put(ProductType.Soup, 2);
-        list.put(ProductType.Bread, 1);
+        HashMap<ProductType, Integer> basket = new HashMap<>();
+        basket.put(ProductType.Apple, 3);
+        basket.put(ProductType.Soup, 2);
+        basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(list);
+        Double price = _calculator.CalculatePrice(basket);
 
         Assertions.assertEquals(1.97, price);
     } */
