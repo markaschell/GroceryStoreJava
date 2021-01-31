@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class CalculatorScenarioTests {
@@ -38,14 +39,14 @@ public class CalculatorScenarioTests {
         Assertions.assertEquals(1.9, price);
     }
 
-/*    @Test
+    @Test
     void Calculate_SixApplesAndOneMilkBoughtFiveDaysFromNow_AppleDiscountApplied()
     {
         HashMap<ProductType, Integer> basket = new HashMap<>();
         basket.put(ProductType.Apple, 6);
         basket.put(ProductType.Milk, 1);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(5));
 
         Assertions.assertEquals(1.84, price);
     }
@@ -58,8 +59,8 @@ public class CalculatorScenarioTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(5));
 
         Assertions.assertEquals(1.97, price);
-    } */
+    }
 }

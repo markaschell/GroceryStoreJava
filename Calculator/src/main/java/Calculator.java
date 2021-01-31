@@ -1,8 +1,13 @@
 import java.security.InvalidParameterException;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class Calculator {
     public Double CalculatePrice(HashMap<ProductType, Integer> basket) {
+        return CalculatePrice(basket, LocalDate.now());
+    }
+
+    public Double CalculatePrice(HashMap<ProductType, Integer> basket, LocalDate date) {
 
         double price = 0.0;
 
@@ -10,7 +15,7 @@ public class Calculator {
             price += GetPrice(productType) * basket.get(productType);
         }
 
-        price -= CalculateDiscount(basket);
+        price -= CalculateDiscount(basket, date);
 
         // Should we introduce a Money object?
         return Math.round(price * 100.0) / 100.0;
@@ -33,8 +38,14 @@ public class Calculator {
         }
     }
 
-    private Double CalculateDiscount(HashMap<ProductType, Integer> basket){
+    private Double CalculateDiscount(HashMap<ProductType, Integer> basket, LocalDate date){
+        LocalDate discountStart = LocalDate.now().minusDays(1);
+
+        if (date.isBefore(discountStart) || date.isAfter(discountStart.plusDays(6))) {
+            return 0.0;
+        }
+
         int numberOfDiscounts = Math.min(basket.getOrDefault(ProductType.Soup, 0) / 2, basket.getOrDefault(ProductType.Bread, 0));
-        return  (GetPrice(ProductType.Bread) / 2.0) * numberOfDiscounts;
+        return (GetPrice(ProductType.Bread) / 2.0) * numberOfDiscounts;
     }
 }
