@@ -5,6 +5,7 @@ import Products.ProductType;
 import java.time.LocalDate;
 import java.util.HashMap;
 
+// Should I have created a basket object instead of his calculator?
 public class Calculator {
 
     ProductPricer _pricer = new ProductPricer();
@@ -15,7 +16,6 @@ public class Calculator {
     }
 
     public Double CalculatePrice(HashMap<ProductType, Integer> basket, LocalDate date) {
-
         double price = 0.0;
 
         for (ProductType productType : basket.keySet()) {

@@ -3,7 +3,7 @@ package Products;
 import java.security.InvalidParameterException;
 
 public class ProductPricer {
-    // These constants will be an issue if prices change.  Move them to a separate class to start?
+    // These constants will be an issue if prices change.
     public Double GetPrice(ProductType productType) {
         switch (productType)
         {
