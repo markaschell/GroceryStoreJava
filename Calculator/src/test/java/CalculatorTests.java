@@ -54,7 +54,7 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_ApplyAndBread()
+    void Calculate_AppleAndBread()
     {
         HashMap<ProductType, Integer> list = new HashMap<>();
         list.put(ProductType.Apple, 1);
@@ -66,7 +66,7 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_HalfOffBreadWhenTwoSoupsDiscount()
+    void Calculate_TwoSoupAndOneBread_DiscountApplied()
     {
         HashMap<ProductType, Integer> list = new HashMap<>();
         list.put(ProductType.Soup, 2);
@@ -78,7 +78,7 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_HalfOffBreadWhenTwoSoupsDiscount_OneSoupTooShort_DiscountNotMet()
+    void Calculate_OneSoupAndOneBread_NoDiscount()
     {
         HashMap<ProductType, Integer> list = new HashMap<>();
         list.put(ProductType.Soup, 1);
@@ -90,7 +90,7 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_HalfOffBreadWhenTwoSoupsDiscount_MissingBread_DiscountNotMet()
+    void Calculate_TwoSoup_NoDiscount()
     {
         HashMap<ProductType, Integer> list = new HashMap<>();
         list.put(ProductType.Soup, 2);
@@ -102,7 +102,7 @@ public class CalculatorTests {
     }
 
     @Test
-    void Calculate_HalfOffBreadWhenTwoSoupsDiscount_AppliedTwice()
+    void Calculate_FourSoupAndTwoBread_DiscountAppliedTwice()
     {
         HashMap<ProductType, Integer> list = new HashMap<>();
         list.put(ProductType.Soup, 4);
@@ -111,17 +111,5 @@ public class CalculatorTests {
         Double price = _calculator.CalculatePrice(list);
 
         Assertions.assertEquals(3.4, price);
-    }
-
-    @Test
-    void Calculate_HalfOffBreadWhenTwoSoupsDiscount_OneAndOnePartialDiscount()
-    {
-        HashMap<ProductType, Integer> list = new HashMap<>();
-        list.put(ProductType.Soup, 3);
-        list.put(ProductType.Bread, 2);
-
-        Double price = _calculator.CalculatePrice(list);
-
-        Assertions.assertEquals(3.15, price);
     }
 }
