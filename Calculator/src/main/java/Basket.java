@@ -5,26 +5,31 @@ import Products.ProductType;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-// Should I have created a basket object instead of his calculator?
 // Did they also want an itemized list and not get the total?
 public class Basket {
 
     ProductPricer _pricer = new ProductPricer();
     DiscountCalculator _discountCalculator = new DiscountCalculator();
 
-    public Double CalculatePrice(HashMap<ProductType, Integer> basket) {
-        return CalculatePrice(basket, LocalDate.now());
+    HashMap<ProductType, Integer> _products = new HashMap<>();
+
+    public void AddProduct(ProductType productType, Integer count) {
+        _products.put(productType, _products.getOrDefault(productType, 0) + count);
     }
 
-    public Double CalculatePrice(HashMap<ProductType, Integer> basket, LocalDate date) {
+    public Double CalculatePrice() {
+        return CalculatePrice(LocalDate.now());
+    }
+
+    public Double CalculatePrice(LocalDate date) {
         double price = 0.0;
 
-        for (ProductType productType : basket.keySet()) {
+        for (ProductType productType : _products.keySet()) {
             // Push this logic down into the pricer - Should a product be aware of a basket?
-            price += _pricer.GetPrice(productType) * basket.get(productType);
+            price += _pricer.GetPrice(productType) * _products.get(productType);
         }
 
-        price -= _discountCalculator.Calculate(basket, date);
+        price -= _discountCalculator.Calculate(_products, date);
 
         // Should we introduce a Money object?  Is this still needed?
         return Math.round(price * 100.0) / 100.0;
