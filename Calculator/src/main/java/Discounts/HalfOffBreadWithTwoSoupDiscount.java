@@ -17,7 +17,7 @@ public class HalfOffBreadWithTwoSoupDiscount implements Discount {
         return this.GetStateDate().plusDays(6);
     }
 
-    public Integer CalculateNumberOfDiscounts(HashMap<ProductType, Integer> basket, LocalDate date) {
+    public Integer CalculateNumberOfDiscounts(HashMap<ProductType, Integer> basket) {
         return Math.min(basket.getOrDefault(ProductType.Soup, 0) / 2, basket.getOrDefault(ProductType.Bread, 0));
     }
 

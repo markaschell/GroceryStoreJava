@@ -16,6 +16,7 @@ public class CalculatorTests {
         _calculator = new Calculator();
     }
 
+    // Do we still need all of these or should I split these up to other units?
     @Test
     void Calculate_NoItems()
     {

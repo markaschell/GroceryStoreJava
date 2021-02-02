@@ -18,7 +18,7 @@ public class TenPercentAppleDiscount implements Discount {
         return LocalDate.now().plusMonths(2).withDayOfMonth(1).minusDays(1);
     }
 
-    public Integer CalculateNumberOfDiscounts(HashMap<ProductType, Integer> basket, LocalDate date) {
+    public Integer CalculateNumberOfDiscounts(HashMap<ProductType, Integer> basket) {
         return basket.getOrDefault(ProductType.Apple, 0);
     }
 
