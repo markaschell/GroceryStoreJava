@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-public class CalculatorScenarioTests {
+public class BasketScenarioTests {
 
-    Calculator _calculator;
+    Basket _basket;
 
     @BeforeEach
     void setup()
     {
-        _calculator = new Calculator();
+        _basket = new Basket();
     }
 
     @Test
@@ -23,7 +23,7 @@ public class CalculatorScenarioTests {
         basket.put(ProductType.Soup, 3);
         basket.put(ProductType.Bread, 2);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(3.15, price);
     }
@@ -35,7 +35,7 @@ public class CalculatorScenarioTests {
         basket.put(ProductType.Apple, 6);
         basket.put(ProductType.Milk, 1);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(1.9, price);
     }
@@ -47,7 +47,7 @@ public class CalculatorScenarioTests {
         basket.put(ProductType.Apple, 6);
         basket.put(ProductType.Milk, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(5));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(5));
 
         Assertions.assertEquals(1.84, price);
     }
@@ -60,7 +60,7 @@ public class CalculatorScenarioTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(5));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(5));
 
         Assertions.assertEquals(1.97, price);
     }

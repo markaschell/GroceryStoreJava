@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 // Should I have created a basket object instead of his calculator?
 // Did they also want an itemized list and not get the total?
-public class Calculator {
+public class Basket {
 
     ProductPricer _pricer = new ProductPricer();
     DiscountCalculator _discountCalculator = new DiscountCalculator();

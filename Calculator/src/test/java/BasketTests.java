@@ -6,21 +6,21 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-public class CalculatorTests {
+public class BasketTests {
 
-    Calculator _calculator;
+    Basket _basket;
 
     @BeforeEach
     void setup()
     {
-        _calculator = new Calculator();
+        _basket = new Basket();
     }
 
     // Do we still need all of these or should I split these up to other units?
     @Test
     void Calculate_NoItems()
     {
-        Double price = _calculator.CalculatePrice(new HashMap<>());
+        Double price = _basket.CalculatePrice(new HashMap<>());
 
         Assertions.assertEquals(0.0, price);
     }
@@ -28,7 +28,7 @@ public class CalculatorTests {
     @Test
     void Calculate_OneApple()
     {
-        Double price = _calculator.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Apple, 1); }});
+        Double price = _basket.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Apple, 1); }});
 
         Assertions.assertEquals(0.1, price);
     }
@@ -36,7 +36,7 @@ public class CalculatorTests {
     @Test
     void Calculate_OneMilk()
     {
-        Double price = _calculator.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Milk, 1); }});
+        Double price = _basket.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Milk, 1); }});
 
         Assertions.assertEquals(1.3, price);
     }
@@ -44,7 +44,7 @@ public class CalculatorTests {
     @Test
     void Calculate_OneBread()
     {
-        Double price = _calculator.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Bread, 1); }});
+        Double price = _basket.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Bread, 1); }});
 
         Assertions.assertEquals(0.8, price);
     }
@@ -52,7 +52,7 @@ public class CalculatorTests {
     @Test
     void Calculate_TwoApples()
     {
-        Double price = _calculator.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Apple, 2); }});
+        Double price = _basket.CalculatePrice(new HashMap<ProductType, Integer>() {{ put(ProductType.Apple, 2); }});
 
         Assertions.assertEquals(0.2, price);
     }
@@ -64,7 +64,7 @@ public class CalculatorTests {
         basket.put(ProductType.Apple, 1);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(0.9, price);
     }
@@ -76,7 +76,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(1.7, price);
     }
@@ -88,7 +88,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 1);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(1.45, price);
     }
@@ -100,7 +100,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 0);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(1.3, price);
     }
@@ -112,7 +112,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 4);
         basket.put(ProductType.Bread, 2);
 
-        Double price = _calculator.CalculatePrice(basket);
+        Double price = _basket.CalculatePrice(basket);
 
         Assertions.assertEquals(3.4, price);
     }
@@ -124,7 +124,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().minusDays(2));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().minusDays(2));
 
         Assertions.assertEquals(2.1, price);
     }
@@ -136,7 +136,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().minusDays(1));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().minusDays(1));
 
         Assertions.assertEquals(1.7, price);
     }
@@ -149,7 +149,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(5));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(5));
 
         Assertions.assertEquals(1.7, price);
     }
@@ -161,7 +161,7 @@ public class CalculatorTests {
         basket.put(ProductType.Soup, 2);
         basket.put(ProductType.Bread, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(6));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(6));
 
         Assertions.assertEquals(2.1, price);
     }
@@ -172,7 +172,7 @@ public class CalculatorTests {
         HashMap<ProductType, Integer> basket = new HashMap<>();
         basket.put(ProductType.Apple, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(2));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(2));
 
         Assertions.assertEquals(.1, price);
     }
@@ -183,7 +183,7 @@ public class CalculatorTests {
         HashMap<ProductType, Integer> basket = new HashMap<>();
         basket.put(ProductType.Apple, 1);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(3));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(3));
 
         Assertions.assertEquals(0.09, price);
     }
@@ -194,7 +194,7 @@ public class CalculatorTests {
         HashMap<ProductType, Integer> basket = new HashMap<>();
         basket.put(ProductType.Apple, 2);
 
-        Double price = _calculator.CalculatePrice(basket, LocalDate.now().plusDays(3));
+        Double price = _basket.CalculatePrice(basket, LocalDate.now().plusDays(3));
 
         Assertions.assertEquals(0.18, price);
     }
@@ -209,7 +209,7 @@ public class CalculatorTests {
         // Given the interface I am not sure now to set this a bit more clear.  I could mock out today
         LocalDate lastDayOfNextMonth = LocalDate.now().plusMonths(2).withDayOfMonth(1).minusDays(1);
 
-        Double price = _calculator.CalculatePrice(basket, lastDayOfNextMonth);
+        Double price = _basket.CalculatePrice(basket, lastDayOfNextMonth);
 
         Assertions.assertEquals(0.09, price);
     }
@@ -222,7 +222,7 @@ public class CalculatorTests {
 
         LocalDate firstDayOfTwoMonthsFromNow = LocalDate.now().plusMonths(2).withDayOfMonth(1);
 
-        Double price = _calculator.CalculatePrice(basket, firstDayOfTwoMonthsFromNow);
+        Double price = _basket.CalculatePrice(basket, firstDayOfTwoMonthsFromNow);
 
         Assertions.assertEquals(0.1, price);
     }
