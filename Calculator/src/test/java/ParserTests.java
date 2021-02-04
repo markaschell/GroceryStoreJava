@@ -81,7 +81,6 @@ public class ParserTests {
         Assertions.assertTrue(basket.GetProducts().isEmpty());
     }
 
-    // TODO - move this to Basket?
     @Test
     void ParseBasket_SameProductPassedTwice()
     {

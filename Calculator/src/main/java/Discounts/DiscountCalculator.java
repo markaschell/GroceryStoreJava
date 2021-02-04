@@ -18,7 +18,6 @@ public class DiscountCalculator {
     public Double Calculate(HashMap<ProductType, Integer> basket, LocalDate date) {
         double amount = 0.0;
 
-        // Can multiple discounts be applied to the same item?
         for (Discount discount : _discounts) {
             if (date.isBefore(discount.GetStateDate()) || date.isAfter(discount.GetEndDate())) {
                 continue;

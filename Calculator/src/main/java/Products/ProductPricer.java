@@ -3,7 +3,6 @@ package Products;
 import java.security.InvalidParameterException;
 
 public class ProductPricer {
-    // These constants will be an issue if prices change.
     public Double GetPrice(ProductType productType) {
         switch (productType)
         {

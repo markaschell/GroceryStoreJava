@@ -7,11 +7,10 @@ import java.util.HashMap;
 
 // Did they also want an itemized list and not get the total?
 public class Basket {
+    LocalDate DefaultDate = LocalDate.now();
 
     ProductPricer _pricer = new ProductPricer();
     DiscountCalculator _discountCalculator = new DiscountCalculator();
-
-    LocalDate DefaultDate = LocalDate.now();
 
     HashMap<ProductType, Integer> _products = new HashMap<>();
 
@@ -32,7 +31,6 @@ public class Basket {
         double price = 0.0;
 
         for (ProductType productType : _products.keySet()) {
-            // Push this logic down into the pricer - Should a product be aware of a basket?
             price += _pricer.GetPrice(productType) * _products.get(productType);
         }
 
@@ -42,7 +40,10 @@ public class Basket {
         }
         price -= _discountCalculator.Calculate(_products, date);
 
-        // Should we introduce a Money object?  Is this still needed?
+        return RoundToCents(price);
+    }
+
+    private double RoundToCents(double price) {
         return Math.round(price * 100.0) / 100.0;
     }
 }

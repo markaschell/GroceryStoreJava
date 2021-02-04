@@ -15,7 +15,6 @@ public class BasketTests {
         _basket = new Basket();
     }
 
-    // Do we still need all of these or should I split these up to other units?
     @Test
     void Calculate_NoItems()
     {
@@ -153,7 +152,6 @@ public class BasketTests {
         Assertions.assertEquals(1.7, price);
     }
 
-    // Verify with the client this is correct
     @Test
     void Calculate_TwoSoupAndOneBread_DiscountEndDate_DiscountApplied()
     {
