@@ -11,6 +11,8 @@ public class Basket {
     ProductPricer _pricer = new ProductPricer();
     DiscountCalculator _discountCalculator = new DiscountCalculator();
 
+    LocalDate DefaultDate = LocalDate.now();
+
     HashMap<ProductType, Integer> _products = new HashMap<>();
 
     public void AddProduct(ProductType productType, Integer count) {
@@ -23,11 +25,9 @@ public class Basket {
     }
 
     public Double CalculatePrice() {
-        return CalculatePrice(LocalDate.now());
+        return CalculatePrice(DefaultDate);
     }
 
-    // TODO - handle Null for the date
-    // TODO - handle 0 for the count
     public Double CalculatePrice(LocalDate date) {
         double price = 0.0;
 
@@ -36,6 +36,10 @@ public class Basket {
             price += _pricer.GetPrice(productType) * _products.get(productType);
         }
 
+        if (date == null)
+        {
+            date = DefaultDate;
+        }
         price -= _discountCalculator.Calculate(_products, date);
 
         // Should we introduce a Money object?  Is this still needed?

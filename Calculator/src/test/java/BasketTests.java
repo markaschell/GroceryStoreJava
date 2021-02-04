@@ -77,6 +77,17 @@ public class BasketTests {
     }
 
     @Test
+    void Calculate_DateIsNull_AssumeToday()
+    {
+        _basket.AddProduct(ProductType.Soup, 2);
+        _basket.AddProduct(ProductType.Bread, 1);
+
+        Double price = _basket.CalculatePrice(null);
+
+        Assertions.assertEquals(1.7, price);
+    }
+
+    @Test
     void Calculate_TwoSoupAndOneBread_DiscountApplied()
     {
         _basket.AddProduct(ProductType.Soup, 2);

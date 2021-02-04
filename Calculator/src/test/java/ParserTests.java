@@ -73,6 +73,14 @@ public class ParserTests {
         Assertions.assertEquals(2, basket.GetProducts().get(ProductType.Apple));
     }
 
+    @Test
+    void ParseBasket_DateArgIgnored()
+    {
+        Basket basket = _parser.ParseBasket(new String[] { "-d", "2000-01-08" });
+
+        Assertions.assertTrue(basket.GetProducts().isEmpty());
+    }
+
     // TODO - move this to Basket?
     @Test
     void ParseBasket_SameProductPassedTwice()

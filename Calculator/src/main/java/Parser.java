@@ -2,18 +2,14 @@ import Products.ProductType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.zip.DataFormatException;
 
 public class Parser {
     static int NumberOfArgumentsInGroup = 2;
 
     public Basket ParseBasket(String[] args) throws IllegalArgumentException {
+        ValidateEvenNumberOfArguments(args);
+
         Basket basket = new Basket();
-
-        if (args.length % NumberOfArgumentsInGroup != 0) {
-            throw new IllegalArgumentException("Must be an even number of arguments");
-        }
-
         for (int i = 0; i < args.length; i = i + NumberOfArgumentsInGroup) {
             ProductType productType;
 
@@ -30,6 +26,8 @@ public class Parser {
                 case "-s":
                     productType = ProductType.Soup;
                     break;
+                case "-d":
+                    continue;
                 default:
                     throw new IllegalArgumentException("Unknown option (" + args[i] + ")");
             }
@@ -45,12 +43,16 @@ public class Parser {
         return basket;
     }
 
-    public LocalDate ParseDate(String[] args) throws IllegalArgumentException {
-        LocalDate date = null;
-
+    private void ValidateEvenNumberOfArguments(String[] args) throws IllegalArgumentException {
         if (args.length % NumberOfArgumentsInGroup != 0) {
             throw new IllegalArgumentException("Must be an even number of arguments");
         }
+    }
+
+    public LocalDate ParseDate(String[] args) throws IllegalArgumentException {
+        LocalDate date = null;
+
+        ValidateEvenNumberOfArguments(args);
 
         for (int i = 0; i < args.length; i = i + NumberOfArgumentsInGroup) {
             if (args[i].equals("-d"))
