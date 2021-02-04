@@ -17,10 +17,17 @@ public class Basket {
         _products.put(productType, _products.getOrDefault(productType, 0) + count);
     }
 
+    public HashMap<ProductType, Integer> GetProducts()
+    {
+        return _products;
+    }
+
     public Double CalculatePrice() {
         return CalculatePrice(LocalDate.now());
     }
 
+    // TODO - handle Null for the date
+    // TODO - handle 0 for the count
     public Double CalculatePrice(LocalDate date) {
         double price = 0.0;
 

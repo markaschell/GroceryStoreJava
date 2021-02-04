@@ -11,11 +11,17 @@ public class TenPercentAppleDiscount implements Discount {
     ProductPricer _pricer = new ProductPricer();
 
     public LocalDate GetStateDate() {
-        return LocalDate.now().plusDays(3);
+        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
+
+        return threeDaysFromNow;
     }
 
     public LocalDate GetEndDate() {
-        return LocalDate.now().plusMonths(2).withDayOfMonth(1).minusDays(1);
+        LocalDate twoMonthsFromNow = LocalDate.now().plusMonths(2);
+        LocalDate firstDayOfTheMonthTwoMonthsFromNow = twoMonthsFromNow.withDayOfMonth(1);
+        LocalDate lastDayOfTheMonthOneMonthFromNow = firstDayOfTheMonthTwoMonthsFromNow.minusDays(1);
+
+        return lastDayOfTheMonthOneMonthFromNow;
     }
 
     public Integer CalculateNumberOfDiscounts(HashMap<ProductType, Integer> basket) {

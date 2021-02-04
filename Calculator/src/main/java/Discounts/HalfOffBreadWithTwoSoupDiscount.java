@@ -10,15 +10,22 @@ public class HalfOffBreadWithTwoSoupDiscount implements Discount {
     ProductPricer _pricer = new ProductPricer();
 
     public LocalDate GetStateDate() {
-        return LocalDate.now().minusDays(1);
+        LocalDate yesterday = LocalDate.now().minusDays(1);
+
+        return yesterday;
     }
 
     public LocalDate GetEndDate() {
-        return this.GetStateDate().plusDays(6);
+        LocalDate SixDaysAfterStartDate = this.GetStateDate().plusDays(6);
+
+        return SixDaysAfterStartDate;
     }
 
     public Integer CalculateNumberOfDiscounts(HashMap<ProductType, Integer> basket) {
-        return Math.min(basket.getOrDefault(ProductType.Soup, 0) / 2, basket.getOrDefault(ProductType.Bread, 0));
+        int numberOfPotentialDiscountsForSoup = basket.getOrDefault(ProductType.Soup, 0) / 2;
+        int numberOfPotentialDiscountsForBread = basket.getOrDefault(ProductType.Bread, 0);
+
+        return Math.min(numberOfPotentialDiscountsForSoup, numberOfPotentialDiscountsForBread);
     }
 
     public Double GetDiscountAmount() {
